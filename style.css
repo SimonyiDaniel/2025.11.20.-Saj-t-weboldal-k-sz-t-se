@@ -27,6 +27,38 @@ header p {
     color: #666;
 }
 
+/* Fade in animation for items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Rotate animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -42,11 +74,34 @@ header p {
 .grid-item {
     background: white;
     border: 1px solid #ddd;
+    animation: fadeIn 0.6s ease-out;
+    animation-fill-mode: both;
 }
+
+/* Add delay to each item */
+.grid-item:nth-child(1) { animation-delay: 0.1s; }
+.grid-item:nth-child(2) { animation-delay: 0.2s; }
+.grid-item:nth-child(3) { animation-delay: 0.3s; }
+.grid-item:nth-child(4) { animation-delay: 0.4s; }
+.grid-item:nth-child(5) { animation-delay: 0.5s; }
+.grid-item:nth-child(6) { animation-delay: 0.6s; }
+.grid-item:nth-child(7) { animation-delay: 0.7s; }
+.grid-item:nth-child(8) { animation-delay: 0.8s; }
 
 .grid-item.large {
     grid-column: span 2;
     grid-row: span 2;
+}
+
+
+.grid-item.animated-pulse {
+    animation: fadeIn 0.6s ease-out, pulse 3s ease-in-out 1s infinite;
+}
+
+
+.rotating-icon {
+    display: inline-block;
+    animation: rotate 4s linear infinite;
 }
 
 .grid-item.wide {
@@ -58,6 +113,11 @@ header p {
     height: 200px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
 }
 
 .grid-item.large img {
@@ -81,10 +141,13 @@ header p {
 .grid-item-content a {
     color: #0066cc;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .grid-item-content a:hover {
     text-decoration: underline;
+    color: #0052a3;
+    transform: translateX(5px);
 }
 
 footer {
